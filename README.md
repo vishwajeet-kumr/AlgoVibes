@@ -6,8 +6,6 @@ AI-powered contract risk analysis platform that helps startups, freelancers, and
 
 **Team:** AlgoVibes (4 members) · **Hackathon:** CodeFiesta — 24-Hour Hackathon @ GIT Jaipur
 
----
-
 ## 🏗️ Architecture
 
 ```
@@ -43,11 +41,11 @@ cd frontend
 npm run dev
 ```
 
-- **Frontend:** http://localhost:3000
-- **API Docs:** http://localhost:8000/docs
-- **Health Check:** http://localhost:8000/api/v1/health
+- **Frontend:** <http://localhost:3000>
+- **API Docs:** <http://localhost:8000/docs>
+- **Health Check:** <http://localhost:8000/api/v1/health>
 
----
+--
 
 ## 📁 Project Structure
 
@@ -98,7 +96,7 @@ AlgoVibes/
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
+| ------- | ----------- |
 | Frontend | Next.js 14, Tailwind CSS, TypeScript |
 | Backend | FastAPI, Python 3.11+ |
 | LLM | Google Gemini 1.5 Flash / Pro |
