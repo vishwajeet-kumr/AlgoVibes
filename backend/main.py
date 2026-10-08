@@ -57,7 +57,9 @@ app.add_middleware(
         settings.FRONTEND_URL,
         "http://localhost:3000",
         "http://127.0.0.1:3000",
+        "https://*.vercel.app",
     ],
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -152,16 +154,14 @@ async def analyze_contract(
             request=request,
         )
     except NotImplementedError:
-        # During Phase 1, the pipeline isn't built yet.
-        # Return a helpful message instead of crashing.
         raise HTTPException(
             status_code=501,
-            detail=(
-                "Analysis pipeline not yet implemented. "
-                "This endpoint is wired up and ready — "
-                "the pipeline will be built in Phases 2–4."
-            ),
+            detail="Analysis pipeline not yet implemented.",
         )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except RuntimeError as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
     # ── Store result and return ──────────────────────────
     result.processing_time_ms = (time.time() - start_time) * 1000

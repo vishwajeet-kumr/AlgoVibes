@@ -1,5 +1,84 @@
 {
-  "_comment": "Jurisdiction rules will be populated in Phase 3. This file defines the structure.",
   "version": "1.0.0",
-  "jurisdictions": {}
+  "jurisdictions": {
+    "india": {
+      "name": "India",
+      "key_statutes": ["Indian Contract Act 1872", "Specific Relief Act 1963", "IT Act 2000", "DPDP Act 2023"],
+      "notes": {
+        "non_compete": "Non-compete clauses during employment are void under Section 27 of the Indian Contract Act 1872. Post-termination non-competes are generally unenforceable in India.",
+        "liquidated_damages": "Under Section 74 of the Indian Contract Act, courts may award only 'reasonable compensation' even if liquidated damages are stipulated.",
+        "indemnification": "Indemnification is governed by Sections 124-147. Only losses caused by the indemnifier's act (or breach) are recoverable.",
+        "data_privacy": "The Digital Personal Data Protection Act (DPDP) 2023 requires consent for data processing, data localization for certain categories, and breach notification within 72 hours.",
+        "arbitration": "Arbitration Act 1996 (amended 2019) governs. Indian courts have limited power to intervene in arbitral proceedings.",
+        "stamp_duty": "Agreements may require stamping under the Indian Stamp Act; unstamped agreements may not be admissible as evidence.",
+        "governing_law": "Indian courts generally respect choice-of-law clauses, but public policy exceptions apply."
+      },
+      "max_non_compete_years": 0,
+      "penalty_enforceability": "limited"
+    },
+    "us-california": {
+      "name": "US — California",
+      "key_statutes": ["California Business & Professions Code §16600", "CCPA/CPRA", "Cal. Labor Code"],
+      "notes": {
+        "non_compete": "Non-compete agreements are generally VOID in California under B&P Code §16600. Exceptions are extremely narrow (sale of business).",
+        "data_privacy": "CCPA/CPRA provides consumers with rights to know, delete, and opt-out of sale of personal data. Businesses must comply if they meet thresholds.",
+        "at_will_employment": "California is an at-will employment state, but wrongful termination exceptions apply.",
+        "indemnification": "Indemnity clauses are generally enforceable but subject to reasonableness standards.",
+        "non_solicit": "Employee non-solicitation clauses are also generally unenforceable in California.",
+        "governing_law": "California law may be applied regardless of choice-of-law clause if the employee primarily works in California."
+      },
+      "max_non_compete_years": 0,
+      "penalty_enforceability": "standard"
+    },
+    "us-delaware": {
+      "name": "US — Delaware",
+      "key_statutes": ["Delaware General Corporation Law", "Delaware Uniform Trade Secrets Act"],
+      "notes": {
+        "non_compete": "Non-competes are enforceable if reasonable in scope, time, and geography. Courts apply a reasonableness test.",
+        "governing_law": "Delaware is the preferred jurisdiction for corporate contracts due to well-developed business law.",
+        "liability": "Delaware courts generally enforce limitation of liability clauses in commercial contracts.",
+        "indemnification": "Delaware permits broad indemnification provisions, including for officers and directors."
+      },
+      "max_non_compete_years": 3,
+      "penalty_enforceability": "standard"
+    },
+    "us-newyork": {
+      "name": "US — New York",
+      "key_statutes": ["NY General Obligations Law", "NY Labor Law", "SHIELD Act"],
+      "notes": {
+        "non_compete": "Non-competes are enforceable if they protect legitimate business interests and are reasonable in time, geography, and scope. Recent legislative efforts aim to ban them.",
+        "data_privacy": "SHIELD Act requires reasonable safeguards for private information of NY residents.",
+        "liquidated_damages": "NY courts enforce liquidated damages if they are a reasonable estimate of actual damages and not a penalty.",
+        "governing_law": "NY law is commonly chosen for commercial contracts. §5-1401 permits parties to choose NY law for contracts over $250K."
+      },
+      "max_non_compete_years": 2,
+      "penalty_enforceability": "standard"
+    },
+    "uk": {
+      "name": "United Kingdom",
+      "key_statutes": ["Unfair Contract Terms Act 1977", "Consumer Rights Act 2015", "UK GDPR / Data Protection Act 2018"],
+      "notes": {
+        "non_compete": "Restrictive covenants are enforceable only if they protect a legitimate business interest and are no wider than reasonably necessary.",
+        "liability": "Under UCTA 1977, exclusion of liability for death/personal injury caused by negligence is void. Other exclusions must be reasonable.",
+        "data_privacy": "UK GDPR requires lawful basis for processing, data protection impact assessments for high-risk processing, and 72-hour breach notification.",
+        "unfair_terms": "The Consumer Rights Act 2015 may render unfair terms in consumer contracts unenforceable.",
+        "indemnification": "Indemnity clauses are subject to the reasonableness test under UCTA for B2B contracts."
+      },
+      "max_non_compete_years": 2,
+      "penalty_enforceability": "strict"
+    },
+    "eu": {
+      "name": "European Union",
+      "key_statutes": ["GDPR", "Directive 93/13/EEC (Unfair Terms)", "Digital Markets Act", "AI Act"],
+      "notes": {
+        "non_compete": "Rules vary by member state. Generally must be limited in time (typically 1-2 years) and compensated in some jurisdictions (e.g., France, Germany).",
+        "data_privacy": "GDPR requires explicit consent or legitimate interest for data processing, right to erasure, data portability, DPO appointment for certain controllers, and 72-hour breach notification to supervisory authority.",
+        "unfair_terms": "Directive 93/13/EEC renders unfair terms in consumer contracts not individually negotiated as non-binding.",
+        "liability": "Limitation of liability for personal injury or death is generally unenforceable across EU member states.",
+        "governing_law": "Rome I Regulation governs choice of law for contractual obligations. Consumer protection laws of the consumer's habitual residence cannot be derogated."
+      },
+      "max_non_compete_years": 2,
+      "penalty_enforceability": "strict"
+    }
+  }
 }

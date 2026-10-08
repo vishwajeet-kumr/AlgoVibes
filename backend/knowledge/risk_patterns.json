@@ -1,5 +1,77 @@
 {
-  "_comment": "Risk patterns will be populated in Phase 3. This file defines the structure.",
   "version": "1.0.0",
-  "patterns": {}
+  "patterns": {
+    "liability": [
+      { "id": "unlimited_liability", "regex": "(?i)\\b(unlimited|uncapped|without limit)\\b.*\\b(liability|liable|damages)\\b", "severity": "critical", "risk_type": "unlimited_liability", "description": "Unlimited or uncapped liability exposure" },
+      { "id": "sole_liability", "regex": "(?i)\\b(sole(ly)?|entire(ly)?|exclusive(ly)?)\\b.*\\b(liability|liable|responsible|responsibility)\\b", "severity": "high", "risk_type": "sole_liability", "description": "One-sided liability assignment" },
+      { "id": "consequential_damages", "regex": "(?i)\\b(consequential|indirect|special|incidental|punitive|exemplary)\\b.*\\bdamages\\b", "severity": "high", "risk_type": "consequential_damages", "description": "Consequential or indirect damages exposure" },
+      { "id": "waiver_of_damages", "regex": "(?i)\\b(waive|waiver|relinquish|forgo)\\b.*\\b(right|claim|damages|remedy)\\b", "severity": "high", "risk_type": "waiver_of_damages", "description": "Waiver of right to claim damages" },
+      { "id": "no_liability_cap", "regex": "(?i)\\bno\\s+(cap|limit|ceiling|maximum)\\b.*\\b(liability|damages)\\b", "severity": "critical", "risk_type": "no_liability_cap", "description": "No cap on liability" }
+    ],
+    "indemnification": [
+      { "id": "broad_indemnification", "regex": "(?i)\\bindemnif(y|ication|ied)\\b.*\\b(any and all|all claims|all losses|all damages|all costs)\\b", "severity": "critical", "risk_type": "broad_indemnification", "description": "Overly broad indemnification obligation" },
+      { "id": "one_sided_indemnity", "regex": "(?i)\\b(shall|must|agrees? to)\\b.*\\bindemnif(y|ication)\\b.*\\b(hold harmless|defend)\\b", "severity": "high", "risk_type": "one_sided_indemnity", "description": "One-sided indemnification clause" },
+      { "id": "third_party_indemnity", "regex": "(?i)\\bindemnif(y|ication)\\b.*\\bthird.?part(y|ies)\\b", "severity": "medium", "risk_type": "third_party_indemnity", "description": "Third-party indemnification obligation" },
+      { "id": "indemnity_including_negligence", "regex": "(?i)\\bindemnif(y|ication)\\b.*\\b(negligence|gross negligence|willful misconduct)\\b", "severity": "critical", "risk_type": "indemnity_including_negligence", "description": "Indemnification even for negligence" }
+    ],
+    "ip_ownership": [
+      { "id": "ip_assignment", "regex": "(?i)\\b(assign|transfer|convey)\\b.*\\b(all|entire|complete)\\b.*\\b(intellectual property|ip|copyright|patent|trademark)\\b", "severity": "critical", "risk_type": "ip_assignment", "description": "Broad IP assignment to other party" },
+      { "id": "work_for_hire", "regex": "(?i)\\bwork(s)?\\s+(made\\s+)?for\\s+hire\\b", "severity": "high", "risk_type": "work_for_hire", "description": "Work-for-hire clause — IP belongs to hiring party" },
+      { "id": "ip_retention_gap", "regex": "(?i)\\b(pre.?existing|prior|background)\\b.*\\b(ip|intellectual property)\\b", "severity": "medium", "risk_type": "ip_retention_gap", "description": "Pre-existing IP ownership may not be protected" },
+      { "id": "unlimited_license", "regex": "(?i)\\b(perpetual|irrevocable|worldwide|royalty.?free|transferable)\\b.*\\blicen(se|ce)\\b", "severity": "high", "risk_type": "unlimited_license", "description": "Broad perpetual/irrevocable license grant" }
+    ],
+    "non_compete": [
+      { "id": "broad_non_compete", "regex": "(?i)\\bnon.?compet(e|ition|itive)\\b.*\\b(worldwide|global|any\\s+business|any\\s+field)\\b", "severity": "critical", "risk_type": "broad_non_compete", "description": "Overly broad non-compete restriction" },
+      { "id": "excessive_duration", "regex": "(?i)\\bnon.?compet(e|ition)\\b.*\\b([3-9]|\\d{2,})\\s*(year|yr)s?\\b", "severity": "high", "risk_type": "excessive_duration", "description": "Non-compete with excessive duration" },
+      { "id": "non_solicit", "regex": "(?i)\\bnon.?solicit(ation)?\\b.*\\b(employee|client|customer|personnel)\\b", "severity": "medium", "risk_type": "non_solicit", "description": "Non-solicitation restriction on employees/clients" },
+      { "id": "no_geographic_limit", "regex": "(?i)\\bnon.?compet(e|ition)\\b(?!.*\\b(within|state|city|county|region|mile|kilometer)\\b)", "severity": "high", "risk_type": "no_geographic_limit", "description": "Non-compete without geographic limitation" }
+    ],
+    "term_renewal": [
+      { "id": "auto_renewal", "regex": "(?i)\\b(auto(matic(ally)?)?|shall)\\b.{0,30}\\brenew(al|ed|s)?\\b", "severity": "medium", "risk_type": "auto_renewal", "description": "Automatic renewal clause" },
+      { "id": "evergreen_clause", "regex": "(?i)\\b(perpetual|indefinite|no\\s+expir(ation|y)|evergreen)\\b", "severity": "high", "risk_type": "evergreen_clause", "description": "Perpetual or evergreen term with no end date" },
+      { "id": "difficult_cancellation", "regex": "(?i)\\b(cancel|terminat(e|ion))\\b.*\\b(90|120|180|365)\\s*days?\\b.*\\b(written|prior)\\b.*\\bnotice\\b", "severity": "medium", "risk_type": "difficult_cancellation", "description": "Long notice period required for cancellation" },
+      { "id": "penalty_for_early_termination", "regex": "(?i)\\b(early\\s+terminat(e|ion)|terminat(e|ion)\\s+before)\\b.*\\b(penalty|fee|charge|damages)\\b", "severity": "high", "risk_type": "penalty_for_early_termination", "description": "Financial penalty for early termination" }
+    ],
+    "confidentiality": [
+      { "id": "perpetual_confidentiality", "regex": "(?i)\\bconfidential(ity)?\\b.*\\b(perpetual|indefinite|surviv(e|al)\\b.*\\b(terminat|expir))", "severity": "medium", "risk_type": "perpetual_confidentiality", "description": "Confidentiality obligations survive indefinitely" },
+      { "id": "broad_definition", "regex": "(?i)\\bconfidential\\s+information\\b.*\\b(any and all|all information|without limitation)\\b", "severity": "medium", "risk_type": "broad_definition", "description": "Overly broad definition of confidential information" },
+      { "id": "no_exceptions", "regex": "(?i)\\bconfidential\\b(?!.*\\b(except|exclud(e|ing)|public(ly)? (available|known))\\b)", "severity": "low", "risk_type": "no_exceptions", "description": "No standard exceptions to confidentiality" },
+      { "id": "residual_knowledge", "regex": "(?i)\\b(residual|retained|general)\\s*(knowledge|skill|experience)\\b", "severity": "low", "risk_type": "residual_knowledge", "description": "Residual knowledge clause present" }
+    ],
+    "termination": [
+      { "id": "termination_at_will", "regex": "(?i)\\bterminate\\b.*\\b(at\\s+will|at\\s+any\\s+time|without\\s+(cause|reason)|for\\s+convenience)\\b", "severity": "high", "risk_type": "termination_at_will", "description": "Unilateral termination without cause" },
+      { "id": "no_cure_period", "regex": "(?i)\\bterminate\\b.*\\bimmediately\\b(?!.*\\bcure\\b)", "severity": "high", "risk_type": "no_cure_period", "description": "Immediate termination with no cure period" },
+      { "id": "one_sided_termination", "regex": "(?i)\\b(only|sole(ly)?|exclusive(ly)?)\\b.*\\bright\\b.*\\bterminate\\b", "severity": "high", "risk_type": "one_sided_termination", "description": "Only one party has termination rights" },
+      { "id": "short_cure_period", "regex": "(?i)\\bcure\\b.*\\b([1-7]|five|seven)\\s*(day|business day)s?\\b", "severity": "medium", "risk_type": "short_cure_period", "description": "Very short cure period before termination" }
+    ],
+    "dispute_resolution": [
+      { "id": "mandatory_arbitration", "regex": "(?i)\\b(mandatory|binding|compulsory)\\b.*\\barbitration\\b", "severity": "medium", "risk_type": "mandatory_arbitration", "description": "Mandatory binding arbitration requirement" },
+      { "id": "unfavorable_venue", "regex": "(?i)\\b(exclusive\\s+jurisdiction|exclusive\\s+venue|shall\\s+be\\s+heard)\\b", "severity": "medium", "risk_type": "unfavorable_venue", "description": "Exclusive venue that may be unfavorable" },
+      { "id": "waiver_of_jury", "regex": "(?i)\\bwaiv(e|er)\\b.*\\bjury\\s+trial\\b", "severity": "medium", "risk_type": "waiver_of_jury", "description": "Waiver of right to jury trial" },
+      { "id": "class_action_waiver", "regex": "(?i)\\bwaiv(e|er)\\b.*\\bclass\\s+action\\b", "severity": "high", "risk_type": "class_action_waiver", "description": "Waiver of class action rights" }
+    ],
+    "governing_law": [
+      { "id": "foreign_governing_law", "regex": "(?i)\\bgoverned\\s+by\\b.*\\blaw(s)?\\s+of\\b", "severity": "info", "risk_type": "foreign_governing_law", "description": "Governing law clause — verify jurisdiction is favorable" },
+      { "id": "choice_of_law", "regex": "(?i)\\bchoice\\s+of\\s+law\\b|\\bforum\\s+selection\\b", "severity": "info", "risk_type": "choice_of_law", "description": "Choice of law or forum selection clause" }
+    ],
+    "data_privacy": [
+      { "id": "broad_data_usage", "regex": "(?i)\\b(collect|use|process|share|sell|transfer)\\b.*\\b(personal|data|information)\\b.*\\b(any purpose|all purposes|without restriction)\\b", "severity": "critical", "risk_type": "broad_data_usage", "description": "Unrestricted use of personal/confidential data" },
+      { "id": "no_data_deletion", "regex": "(?i)\\bdata\\b.*\\b(retain|keep|store|maintain)\\b.*\\b(indefinite|perpetual|permanent)\\b", "severity": "high", "risk_type": "no_data_deletion", "description": "No data deletion or retention limit" },
+      { "id": "third_party_sharing", "regex": "(?i)\\b(share|disclose|transfer|provide)\\b.*\\b(data|information)\\b.*\\bthird.?part(y|ies)\\b", "severity": "medium", "risk_type": "third_party_sharing", "description": "Data sharing with third parties" },
+      { "id": "no_breach_notification", "regex": "(?i)\\bdata\\b.*\\bbreach\\b(?!.*\\bnotif(y|ication)\\b)", "severity": "high", "risk_type": "no_breach_notification", "description": "No data breach notification requirement" }
+    ],
+    "penalty_damages": [
+      { "id": "liquidated_damages", "regex": "(?i)\\bliquidated\\s+damages\\b", "severity": "medium", "risk_type": "liquidated_damages", "description": "Liquidated damages clause" },
+      { "id": "excessive_penalties", "regex": "(?i)\\b(penalty|penalt(y|ies)|fine)\\b.*\\b(\\$\\d{4,}|exceed|multiply|double|triple|treble)\\b", "severity": "high", "risk_type": "excessive_penalties", "description": "Potentially excessive penalty amounts" },
+      { "id": "interest_on_late_payment", "regex": "(?i)\\b(interest|late\\s+fee|late\\s+payment)\\b.*\\b(\\d{2,}%|per\\s+month|per\\s+annum|compound)\\b", "severity": "medium", "risk_type": "interest_on_late_payment", "description": "High interest rate on late payments" }
+    ],
+    "miscellaneous": [
+      { "id": "entire_agreement", "regex": "(?i)\\bentire\\s+agreement\\b.*\\b(supersed(e|es)|replac(e|es)|cancel)\\b", "severity": "info", "risk_type": "entire_agreement", "description": "Entire agreement clause — prior agreements voided" },
+      { "id": "amendment_restriction", "regex": "(?i)\\b(amend|modif(y|ication))\\b.*\\b(writing|written|signed)\\b.*\\b(both|all|mutual)\\b", "severity": "low", "risk_type": "amendment_restriction", "description": "Amendments require mutual written consent" },
+      { "id": "force_majeure_narrow", "regex": "(?i)\\bforce\\s+majeure\\b(?!.*\\b(pandemic|epidemic|government\\s+action|regulation)\\b)", "severity": "low", "risk_type": "force_majeure_narrow", "description": "Narrow force majeure definition" },
+      { "id": "assignment_restriction", "regex": "(?i)\\b(not|shall not|may not)\\b.*\\bassign\\b.*\\b(without|prior)\\b.*\\bconsent\\b", "severity": "low", "risk_type": "assignment_restriction", "description": "Assignment restriction clause" },
+      { "id": "unilateral_amendment", "regex": "(?i)\\b(may|reserves?\\s+the\\s+right)\\b.*\\b(amend|modif(y|ication)|change|alter)\\b.*\\b(at\\s+any\\s+time|without\\s+notice|sole\\s+discretion)\\b", "severity": "critical", "risk_type": "unilateral_amendment", "description": "Unilateral right to amend terms" },
+      { "id": "severability_missing", "regex": "(?i)\\b(invalid|unenforceable|void)\\b.*\\b(entire|whole|all)\\b.*\\b(agreement|contract)\\b.*\\b(void|terminated|invalid)\\b", "severity": "medium", "risk_type": "severability_missing", "description": "Invalid clause may void entire agreement" }
+    ]
+  }
 }
