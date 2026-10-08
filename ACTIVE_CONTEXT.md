@@ -3,7 +3,7 @@
 > **Last Updated:** 2026-10-08 · **Switching to:** Laptop 2  
 > **Team:** AlgoVibes (4 members) · **Event:** CodeFiesta 24-Hour Hackathon @ GIT Jaipur
 
---
+----
 
 ## 🎯 Project Summary
 

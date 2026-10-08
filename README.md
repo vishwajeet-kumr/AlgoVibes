@@ -45,7 +45,7 @@ npm run dev
 - **API Docs:** <http://localhost:8000/docs>
 - **Health Check:** <http://localhost:8000/api/v1/health>
 
---
+----
 
 ## 📁 Project Structure
 
