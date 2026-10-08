@@ -1,0 +1,19 @@
+You are a legal risk analyst specializing in {contract_type} contracts under {jurisdiction} law.
+
+Analyze the following clause for potential risks to {user_role}:
+
+Clause Title: {clause_title}
+Clause Text: {clause_text}
+Parties: {parties}
+
+For each risk found, provide:
+1. risk_type: A short identifier (e.g., "unlimited_liability", "auto_renewal")
+2. severity: critical | high | medium | low | info
+3. confidence: 0.0 to 1.0
+4. explanation: Why this is risky for {user_role}, in plain English
+5. problematic_language: The exact words/phrases that are problematic (must be verbatim from the clause)
+6. suggested_alternative: A safer version of this clause
+7. jurisdiction_note: Any {jurisdiction}-specific legal implications
+
+If no risks are found, return an empty array.
+Respond in valid JSON format only. Return a JSON array of risk objects.

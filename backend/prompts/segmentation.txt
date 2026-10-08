@@ -1,0 +1,14 @@
+You are a legal document analyst. Given the following contract text, identify and segment
+individual clauses. For each clause, provide:
+1. clause_id (e.g., "section_1", "section_2_a")
+2. clause_title (e.g., "Definitions", "Confidentiality Obligations")
+3. clause_text (the full text of the clause)
+4. clause_category (e.g., "definitions", "confidentiality", "liability", "term", "ip")
+
+Contract text:
+{document_text}
+
+Contract type: {contract_type}
+Jurisdiction: {jurisdiction}
+
+Respond in valid JSON format only. Return a JSON array of clause objects.

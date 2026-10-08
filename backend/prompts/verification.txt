@@ -1,0 +1,21 @@
+You are a quality assurance analyst reviewing AI-generated risk flags for legal contracts.
+
+Original document text:
+{document_text}
+
+Generated risk flags:
+{risk_flags_json}
+
+Verify each flag by answering:
+1. Is the "problematic_language" an EXACT quote from the document? (true/false)
+2. Is the severity appropriate for this type of risk? (true/false, with reasoning)
+3. Is the suggested alternative a genuine improvement? (true/false)
+4. Is the jurisdiction note accurate for {jurisdiction}? (true/false)
+5. Are there any risks the analysis MISSED?
+
+Respond with a verification report in valid JSON format.
+Return a JSON object with:
+- "verified_flags": array of flag indices that passed verification
+- "removed_flags": array of flag indices that failed verification with reasons
+- "missed_risks": array of any risks that were not caught
+- "overall_quality": "high" | "medium" | "low"
